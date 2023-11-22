@@ -41,6 +41,8 @@ import org.checkerframework.checker.lock.qual.MayReleaseLocks;
 import org.checkerframework.checker.lock.qual.ReleasesNoLocks;
 import org.checkerframework.framework.qual.AnnotatedFor;
 
+import org.checkerframework.checker.mustcall.qual.InheritableMustCall;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -173,6 +175,7 @@ import java.util.concurrent.TimeUnit;
  * @author Doug Lea
  */
 @AnnotatedFor({"lock"})
+@InheritableMustCall({"unlock"})
 public interface Lock {
 
     /**
@@ -192,6 +195,7 @@ public interface Lock {
      */
     @EnsuresLockHeld({"this"})
     @ReleasesNoLocks
+    @MustCall({})
     void lock();
 
     /**
