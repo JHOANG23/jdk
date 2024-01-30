@@ -299,16 +299,17 @@ public class ReentrantLock implements Lock, java.io.Serializable {
      * Creates an instance of {@code ReentrantLock}.
      * This is equivalent to using {@code ReentrantLock(false)}.
      */
+    @MustCall({})
     public ReentrantLock() {
         sync = new NonfairSync();
     }
-
     /**
      * Creates an instance of {@code ReentrantLock} with the
      * given fairness policy.
      *
      * @param fair {@code true} if this lock should use a fair ordering policy
      */
+    @MustCall({})
     public ReentrantLock(boolean fair) {
         sync = fair ? new FairSync() : new NonfairSync();
     }
@@ -329,7 +330,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
      */
     @EnsuresLockHeld({"this"})
     @ReleasesNoLocks
-
+    @CreatesMustCallFor
     public void lock() {
         sync.lock();
     }

@@ -195,7 +195,7 @@ public interface Lock {
      */
     @EnsuresLockHeld({"this"})
     @ReleasesNoLocks
-    @MustCall({})
+    @CreatesMustCallFor
     void lock();
 
     /**
