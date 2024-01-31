@@ -117,7 +117,7 @@ import jdk.internal.vm.annotation.ReservedStackAccess;
 public class ReentrantLock implements Lock, java.io.Serializable {
     private static final long serialVersionUID = 7373984872572414699L;
     /** Synchronizer providing all implementation mechanics */
-    private final Sync sync;
+    private final @Owning Sync sync;
 
     /**
      * Base of synchronization control for this lock. Subclassed
@@ -330,7 +330,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
      */
     @EnsuresLockHeld({"this"})
     @ReleasesNoLocks
-    @CreatesMustCallFor("sync")
+    @CreatesMustCallFor("this")
     public void lock() {
         sync.lock();
     }
