@@ -330,7 +330,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
      */
     @EnsuresLockHeld({"this"})
     @ReleasesNoLocks
-    @CreatesMustCallFor
+    @CreatesMustCallFor("sync")
     public void lock() {
         sync.lock();
     }
