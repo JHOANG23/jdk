@@ -42,6 +42,7 @@ import org.checkerframework.checker.lock.qual.ReleasesNoLocks;
 import org.checkerframework.framework.qual.AnnotatedFor;
 
 import org.checkerframework.checker.mustcall.qual.CreatesMustCallFor;
+import org.checkerframework.checker.mustcall.qual.Owning;
 
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
@@ -330,7 +331,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
      */
     @EnsuresLockHeld({"this"})
     @ReleasesNoLocks
-    @CreatesMustCallFor("this")
+    @CreatesMustCallFor(sync)
     public void lock() {
         sync.lock();
     }
